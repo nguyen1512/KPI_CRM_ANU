@@ -551,15 +551,26 @@
   };
 
   function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
-
+  
   function normalizeTask(t){
-    // Auto rules
     let p = clamp(parseInt(t.progress ?? 0, 10) || 0, 0, 100);
     let status = t.status || "Todo";
-    if(status === "Done") p = 100;
-    if(p === 100) status = "Done";
+
+    // ✅ Rule chuẩn:
+    // - progress = 100 => Done
+    // - progress < 100 và status = Done => tự hạ xuống In Progress
+    if (p >= 100) {
+        p = 100;
+        status = "Done";
+    } else {
+        if (status === "Done") status = "In Progress";
+    }
+
+    // (tuỳ chọn) nếu user nhập progress > 0 mà status vẫn Todo thì đẩy lên In Progress
+    if (p > 0 && status === "Todo") status = "In Progress";
+
     return {...t, progress:p, status};
-  }
+    }
 
   function badgeClass(status){
     if(status === "Done") return "good";
