@@ -60,7 +60,7 @@ Export CSV
 4. Lưu file CSV và **thay thế file**
 
 ```
-data/KPI.csv
+KPI.csv
 ```
 
 ---
@@ -76,7 +76,7 @@ git pull
 Sau khi export CSV và thay thế `KPI.csv`:
 
 ```
-git add data/KPI.csv
+git add KPI.csv
 git commit -m "Daily progress update - YYYY-MM-DD"
 git push
 ```
@@ -104,7 +104,7 @@ Sau đó:
 3. Chọn file
 
 ```
-data/KPI.csv
+KPI.csv
 ```
 
 Hệ thống sẽ hiển thị:
