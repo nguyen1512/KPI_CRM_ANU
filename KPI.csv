@@ -45,3 +45,24 @@ TE6259B-MMBGPED0,Deployment,Setup server + env + secrets,2026-06-26,2026-06-27,T
 T4DA710-MMBGPED0,Deployment,Deploy backend (Docker/VPS),2026-06-27,2026-06-28,Todo,0,,2026-03-04 10:13:28
 TFD4CA7-MMBGPED0,Deployment,Deploy frontend (Vercel/Netlify),2026-06-28,2026-06-29,Todo,0,,2026-03-04 10:13:28
 T1ED891-MMBGPED0,Deployment,Training user + final check,2026-06-29,2026-06-30,Todo,0,,2026-03-04 10:13:28
+T8C12F1-MMBGPED0,Data/ETL,Setup ETL repository + project structure,2026-04-20,2026-04-22,Todo,0,,2026-03-04 10:13:28
+T7B31AC-MMBGPED0,Data/ETL,Thiết lập môi trường ETL (Python/pandas/db connection),2026-04-20,2026-04-23,Todo,0,,2026-03-04 10:13:28
+T6E3A8B-MMBGPED0,Data/ETL,Xây cấu trúc pipeline ETL cơ bản (extract/transform/load),2026-04-22,2026-04-25,Todo,0,,2026-03-04 10:13:28
+T4A1C5F-MMBGPED0,Data/ETL,Thiết kế mapping dữ liệu source → database schema,2026-04-23,2026-04-26,Todo,0,,2026-03-04 10:13:28
+T3D52E6-MMBGPED0,Data/ETL,Import dataset khách hàng mẫu vào database,2026-04-26,2026-04-30,Todo,0,,2026-03-04 10:13:28
+T9A4B77-MMBGPED0,Data/ETL,Xây script ETL xử lý dữ liệu khách hàng (clean/normalize),2026-04-28,2026-05-02,Todo,0,,2026-03-04 10:13:28
+T5E6A1D-MMBGPED0,Data/ETL,Xây script ETL booking dataset,2026-05-02,2026-05-06,Todo,0,,2026-03-04 10:13:28
+T1F29C8-MMBGPED0,Data/ETL,Xây script ETL payment dataset,2026-05-06,2026-05-10,Todo,0,,2026-03-04 10:13:28
+T2A76E4-MMBGPED0,Data/ETL,Xây script ETL invoice dataset,2026-05-10,2026-05-14,Todo,0,,2026-03-04 10:13:28
+T63B5F9-MMBGPED0,Data/ETL,Kiểm tra trùng dữ liệu và chuẩn hóa phone/email,2026-05-04,2026-05-08,Todo,0,,2026-03-04 10:13:28
+T7A3F2B-MMBGPED0,Data/ETL,Xây rule validation dữ liệu (null/duplicate/format),2026-05-08,2026-05-12,Todo,0,,2026-03-04 10:13:28
+T1C9E7A-MMBGPED0,Data/ETL,Tạo dataset test booking/payment end-to-end,2026-05-12,2026-05-16,Todo,0,,2026-03-04 10:13:28
+T5F3B8C-MMBGPED0,Data/ETL,Kiểm tra integrity dữ liệu giữa bảng (FK consistency),2026-05-16,2026-05-20,Todo,0,,2026-03-04 10:13:28
+T3E8B6A-MMBGPED0,Data/ETL,Tạo query kiểm tra doanh thu (revenue validation),2026-05-18,2026-05-22,Todo,0,,2026-03-04 10:13:28
+T8D4C12-MMBGPED0,Data/ETL,Xây dataset KPI cho dashboard testing,2026-05-20,2026-05-24,Todo,0,,2026-03-04 10:13:28
+T6A2D9F-MMBGPED0,Data/ETL,Chuẩn hóa dữ liệu để frontend hiển thị đúng format,2026-05-25,2026-05-28,Todo,0,,2026-03-04 10:13:28
+T4C7F81-MMBGPED0,Data/ETL,Đối chiếu dữ liệu API response với database,2026-05-28,2026-06-01,Todo,0,,2026-03-04 10:13:28
+T9E1A3C-MMBGPED0,Data/ETL,Tạo dataset test cho UI modules (customer/booking/invoice),2026-06-01,2026-06-05,Todo,0,,2026-03-04 10:13:28
+T1D7E9B-MMBGPED0,Data/ETL,Kiểm tra số liệu hiển thị dashboard vs query database,2026-06-05,2026-06-08,Todo,0,,2026-03-04 10:13:28
+T7C6A5D-MMBGPED0,Data/ETL,Chuẩn hóa pipeline ETL và tối ưu performance query,2026-06-08,2026-06-12,Todo,0,,2026-03-04 10:13:28
+T5A3E1F-MMBGPED0,Data/ETL,Finalize dataset test cho toàn hệ thống CRM,2026-06-12,2026-06-15,Todo,0,,2026-03-04 10:13:28
