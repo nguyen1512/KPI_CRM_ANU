@@ -1,0 +1,1120 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CRM Timeline Tracker — 04/03/2026 → 01/07/2026</title>
+  <style>
+    :root{
+      --bg:#0b1220; --card:#111b2d; --muted:#93a4c7; --text:#eaf0ff;
+      --border:rgba(255,255,255,.08);
+      --primary:#F06020; --primary2:#ff7a45;
+      --good:#22c55e; --warn:#f59e0b; --bad:#ef4444; --info:#3b82f6;
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius:16px;
+      --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:var(--font); background: radial-gradient(1200px 800px at 10% 10%, rgba(240,96,32,.18), transparent 60%),
+      radial-gradient(1200px 800px at 90% 20%, rgba(59,130,246,.18), transparent 60%),
+      var(--bg);
+      color:var(--text);
+    }
+    header{
+      padding:18px 18px 8px;
+      position:sticky; top:0; backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.65);
+      border-bottom:1px solid var(--border);
+      z-index:10;
+    }
+    .wrap{max-width:1200px; margin:0 auto; padding:0 12px;}
+    .top{
+      display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+      justify-content:space-between;
+    }
+    h1{font-size:18px; margin:0; letter-spacing:.2px}
+    .sub{color:var(--muted); font-size:12px; margin-top:4px}
+    .grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:14px; padding:14px 0 18px;}
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .card .hd{
+      padding:14px 14px 10px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      border-bottom:1px solid var(--border);
+    }
+    .card .bd{ padding:14px; }
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .btn{
+      appearance:none; border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color:var(--text); padding:9px 11px; border-radius:12px;
+      cursor:pointer; font-weight:600; font-size:13px;
+      transition: transform .05s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+    }
+    .btn:hover{ background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{
+      border-color: rgba(240,96,32,.45);
+      background: linear-gradient(180deg, rgba(240,96,32,.28), rgba(240,96,32,.12));
+    }
+    .btn.danger{ border-color: rgba(239,68,68,.45); }
+    .btn.good{ border-color: rgba(34,197,94,.45); }
+
+    .pill{
+      padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700;
+      border:1px solid var(--border); background: rgba(255,255,255,.04);
+      color:var(--muted);
+    }
+    .pill.good{ color: #bdf7cc; border-color: rgba(34,197,94,.35); background: rgba(34,197,94,.12); }
+    .pill.warn{ color: #ffe1a6; border-color: rgba(245,158,11,.35); background: rgba(245,158,11,.12); }
+    .pill.bad{ color: #ffc1c1; border-color: rgba(239,68,68,.35); background: rgba(239,68,68,.12); }
+    .pill.info{ color: #c7dbff; border-color: rgba(59,130,246,.35); background: rgba(59,130,246,.12); }
+
+    .kpis{display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;}
+    @media (max-width: 980px){ .kpis{grid-template-columns: repeat(2, 1fr);} }
+    .kpi{
+      padding:12px; border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.035);
+    }
+    .kpi .t{color:var(--muted); font-size:12px}
+    .kpi .v{font-size:22px; font-weight:800; margin-top:6px}
+    .kpi .s{color:var(--muted); font-size:12px; margin-top:6px}
+
+    .bar{
+      height:12px; background: rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      border-radius:999px; overflow:hidden;
+    }
+    .bar > div{
+      height:100%;
+      background: linear-gradient(90deg, var(--primary), var(--primary2));
+      width:0%;
+    }
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width: 980px){
+      .controls{grid-template-columns:1fr 1fr}
+    }
+    input, select, textarea{
+      width:100%;
+      background: rgba(0,0,0,.18);
+      border:1px solid var(--border);
+      color:var(--text);
+      padding:10px 10px;
+      border-radius:12px;
+      outline:none;
+      font-size:13px;
+    }
+    textarea{min-height:80px; resize:vertical}
+    label{font-size:12px; color:var(--muted); display:block; margin:8px 0 6px;}
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background: rgba(255,255,255,.02);
+    }
+    thead th{
+    text-align:left;
+    font-size:12px;
+    color:var(--muted);
+    padding:10px 10px;
+    border-bottom:1px solid var(--border);
+    background: rgba(255,255,255,.03);
+
+    position: sticky;
+    top: 0;              /* ✅ FIX */
+    z-index: 5;
+    }
+    tbody td{
+      padding:10px 10px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      vertical-align:top;
+      font-size:13px;
+    }
+    tbody tr:hover{ background: rgba(255,255,255,.03); }
+    .td-title{font-weight:800}
+    .mini{font-size:12px; color:var(--muted); margin-top:4px}
+    .actions{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{
+      display:inline-flex; align-items:center; gap:6px;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      font-size:12px;
+      color:var(--muted);
+    }
+    .right{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+    canvas{width:100%; height:180px; background: rgba(0,0,0,.12); border:1px solid var(--border); border-radius:14px;}
+    .footnote{color:var(--muted); font-size:12px; margin-top:10px; line-height:1.45}
+    .hidden{display:none!important}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1>CRM Timeline Tracker</h1>
+        <div class="sub">Theo timeline 04/03/2026 → 30/06/2026 (Go-live: 01/07/2026). Lưu tự động trong trình duyệt + Export/Import CSV.</div>
+      </div>
+      <div class="right">
+        <span id="pillDeploy" class="pill info">Go-live: 01/07/2026</span>
+        <button class="btn primary" id="btnAdd">+ Thêm task</button>
+        <button class="btn" id="btnExport">Export CSV</button>
+        <label class="btn" style="display:inline-flex; gap:8px; align-items:center; cursor:pointer;">
+          Import CSV
+          <input id="fileImport" type="file" accept=".csv,text/csv" class="hidden">
+        </label>
+        <button class="btn danger" id="btnReset">Reset dữ liệu</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+    <section class="card">
+      <div class="hd">
+        <div class="row" style="align-items:flex-end">
+          <div>
+            <div class="pill info">Tổng quan tiến độ</div>
+          </div>
+        </div>
+        <div class="row">
+          <span class="chip">Tính % = trung bình % từng task</span>
+        </div>
+      </div>
+      <div class="bd">
+        <div class="kpis">
+          <div class="kpi">
+            <div class="t">Tổng task</div>
+            <div class="v" id="kpiTotal">0</div>
+            <div class="s" id="kpiRange">—</div>
+          </div>
+          <div class="kpi">
+            <div class="t">Đã hoàn thành</div>
+            <div class="v" id="kpiDone">0</div>
+            <div class="s" id="kpiDonePct">—</div>
+          </div>
+          <div class="kpi">
+            <div class="t">% Hoàn thành tổng</div>
+            <div class="v" id="kpiProgress">0%</div>
+            <div class="s" id="kpiUpdated">—</div>
+          </div>
+          <div class="kpi">
+            <div class="t">Quá hạn (End < hôm nay, chưa Done)</div>
+            <div class="v" id="kpiOverdue">0</div>
+            <div class="s" id="kpiOverdueHint">—</div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <div class="bar"><div id="barOverall"></div></div>
+        </div>
+
+        <div style="margin-top:14px; display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div>
+            <label>% Done (Pie)</label>
+            <canvas id="pie"></canvas>
+          </div>
+          <div>
+            <label>Hoàn thành theo tháng (Bar)</label>
+            <canvas id="barMonth"></canvas>
+          </div>
+        </div>
+
+        <div class="footnote">
+          • Dữ liệu được lưu trong <b>localStorage</b> của trình duyệt (không mất khi F5).<br>
+          • Muốn lưu trữ file: dùng <b>Export CSV</b>. Muốn khôi phục/chia sẻ: dùng <b>Import CSV</b>.
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="hd">
+        <div class="row">
+          <span class="pill info">Bộ lọc & Tạo task</span>
+        </div>
+        <div class="row">
+          <button class="btn good" id="btnSaveTask">Lưu task</button>
+          <button class="btn" id="btnClearForm">Xóa form</button>
+        </div>
+      </div>
+      <div class="bd">
+        <div class="controls">
+          <div>
+            <label>Tìm kiếm</label>
+            <input id="q" placeholder="VD: Customer API / UX / Database..." />
+          </div>
+          <div>
+            <label>Module</label>
+            <select id="filterModule">
+              <option value="">Tất cả</option>
+              <option>Business</option>
+              <option>UX/UI</option>
+              <option>Database</option>
+              <option>Backend</option>
+              <option>Frontend</option>
+              <option>Testing</option>
+              <option>Deployment</option>
+            </select>
+          </div>
+          <div>
+            <label>Trạng thái</label>
+            <select id="filterStatus">
+              <option value="">Tất cả</option>
+              <option>Todo</option>
+              <option>In Progress</option>
+              <option>Blocked</option>
+              <option>Done</option>
+            </select>
+          </div>
+          <div>
+            <label>Sắp xếp</label>
+            <select id="sortBy">
+              <option value="start_asc">Start ↑</option>
+              <option value="start_desc">Start ↓</option>
+              <option value="end_asc">End ↑</option>
+              <option value="end_desc">End ↓</option>
+              <option value="progress_desc">% ↓</option>
+              <option value="progress_asc">% ↑</option>
+              <option value="updated_desc">Update ↓</option>
+            </select>
+          </div>
+        </div>
+
+        <hr style="border:0;border-top:1px solid var(--border);margin:14px 0">
+
+        <div class="controls">
+          <div>
+            <label>ID (auto)</label>
+            <input id="taskId" placeholder="Tự tạo" disabled />
+          </div>
+          <div>
+            <label>Module</label>
+            <select id="taskModule">
+              <option>Business</option>
+              <option>UX/UI</option>
+              <option>Database</option>
+              <option>Backend</option>
+              <option>Frontend</option>
+              <option>Testing</option>
+              <option>Deployment</option>
+            </select>
+          </div>
+          <div>
+            <label>Start</label>
+            <input id="taskStart" type="date" />
+          </div>
+          <div>
+            <label>End</label>
+            <input id="taskEnd" type="date" />
+          </div>
+        </div>
+
+        <div style="margin-top:10px">
+          <label>Tiêu đề task</label>
+          <input id="taskTitle" placeholder="VD: Thiết kế ERD / Customer API / Booking UI..." />
+        </div>
+
+        <div class="controls" style="margin-top:10px">
+          <div>
+            <label>Trạng thái</label>
+            <select id="taskStatus">
+              <option>Todo</option>
+              <option>In Progress</option>
+              <option>Blocked</option>
+              <option>Done</option>
+            </select>
+          </div>
+          <div>
+            <label>% Tiến độ (0–100)</label>
+            <input id="taskProgress" type="number" min="0" max="100" value="0" />
+          </div>
+          <div style="grid-column: span 2;">
+            <label>Ghi chú</label>
+            <input id="taskNotes" placeholder="VD: phụ thuộc auth xong mới làm..." />
+          </div>
+        </div>
+
+        <div class="footnote">
+          Gợi ý: nếu chọn <b>Done</b> hệ thống sẽ tự set <b>progress = 100</b>. Nếu progress = 100 thì auto chuyển Done.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="card" style="margin-bottom:18px">
+    <div class="hd">
+      <div class="row">
+        <span class="pill info">Danh sách task</span>
+        <span class="chip" id="countShown">0 hiển thị</span>
+      </div>
+      <div class="row">
+        <button class="btn" id="btnMarkSelectedDone">Đánh dấu Done (đang chọn)</button>
+      </div>
+    </div>
+    <div class="bd" style="padding:0">
+      <div style="max-height:520px; overflow:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:34px;"><input type="checkbox" id="chkAll"></th>
+              <th style="width:120px;">Module</th>
+              <th>Task</th>
+              <th style="width:110px;">Start</th>
+              <th style="width:110px;">End</th>
+              <th style="width:120px;">Status</th>
+              <th style="width:110px;">Progress</th>
+              <th style="width:160px;">Update</th>
+              <th style="width:220px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // =========================
+  // Storage
+  // =========================
+  const STORAGE_KEY = "CRM_TIMELINE_TASKS_V1";
+
+  // "Hôm nay" theo yêu cầu timeline (thực tế bạn mở web ngày nào cũng được),
+  // nhưng deadline go-live là 2026-07-01.
+  const GO_LIVE = "2026-07-01";
+
+  const defaultTasks = [
+    // Business (04/03 → 15/03)
+    { module:"Business", title:"Xác định mục tiêu hệ thống CRM", start:"2026-03-04", end:"2026-03-06", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Business", title:"Xác định role hệ thống (CEO/PGĐ/TP/CSKH/MKT/...) ", start:"2026-03-04", end:"2026-03-07", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Business", title:"Xác định module CRM (Customer/Booking/Sales/MKT/Report...)", start:"2026-03-06", end:"2026-03-08", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Business", title:"Xây dựng user flow tổng (Lead→Customer→Booking→Payment)", start:"2026-03-08", end:"2026-03-11", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Business", title:"Viết chi tiết chức năng từng module (spec)", start:"2026-03-10", end:"2026-03-14", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Business", title:"Hoàn thiện BRD", start:"2026-03-14", end:"2026-03-15", status:"Todo", progress:0, notes:"", updated_at:"" },
+
+    // UX/UI (16/03 → 05/04)
+    { module:"UX/UI", title:"Setup Figma workspace + structure file", start:"2026-03-16", end:"2026-03-17", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"UX/UI", title:"Thiết kế Design System (font/color/spacing/components)", start:"2026-03-17", end:"2026-03-19", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"UX/UI", title:"Thiết kế layout CRM (sidebar/header/page layout)", start:"2026-03-19", end:"2026-03-21", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"UX/UI", title:"Thiết kế Dashboard UI (KPI/cards/charts)", start:"2026-03-22", end:"2026-03-24", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"UX/UI", title:"Thiết kế Customer module UI (list/detail/form)", start:"2026-03-24", end:"2026-03-27", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"UX/UI", title:"Thiết kế Booking module UI (calendar + create booking)", start:"2026-03-27", end:"2026-03-29", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"UX/UI", title:"Thiết kế Invoice/Payment module UI", start:"2026-03-30", end:"2026-04-01", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"UX/UI", title:"Thiết kế Marketing module UI (lead/campaign)", start:"2026-04-01", end:"2026-04-03", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"UX/UI", title:"Review + finalize UI", start:"2026-04-04", end:"2026-04-05", status:"Todo", progress:0, notes:"", updated_at:"" },
+
+    // Database (06/04 → 19/04)
+    { module:"Database", title:"Setup PostgreSQL + config environment", start:"2026-04-06", end:"2026-04-07", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Database", title:"Thiết kế bảng core (users/roles/permissions/customers)", start:"2026-04-07", end:"2026-04-10", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Database", title:"Thiết kế bảng transaction (booking/payment/invoice)", start:"2026-04-10", end:"2026-04-12", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Database", title:"Xây ERD + review logic quan hệ", start:"2026-04-13", end:"2026-04-15", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Database", title:"Viết schema SQL (create table, indexes, constraints)", start:"2026-04-15", end:"2026-04-18", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Database", title:"Seed data + test query", start:"2026-04-18", end:"2026-04-19", status:"Todo", progress:0, notes:"", updated_at:"" },
+
+    // Backend (20/04 → 24/05)
+    { module:"Backend", title:"Setup backend repo + config", start:"2026-04-20", end:"2026-04-22", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Backend", title:"Auth API (login/JWT/refresh)", start:"2026-04-22", end:"2026-04-24", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Backend", title:"User API (CRUD + roles)", start:"2026-04-25", end:"2026-04-28", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Backend", title:"Customer API (CRUD + search + history)", start:"2026-04-28", end:"2026-05-03", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Backend", title:"Booking API (CRUD + calendar endpoints)", start:"2026-05-04", end:"2026-05-07", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Backend", title:"Product/Service API", start:"2026-05-08", end:"2026-05-10", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Backend", title:"Payment API", start:"2026-05-11", end:"2026-05-14", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Backend", title:"Invoice API", start:"2026-05-14", end:"2026-05-17", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Backend", title:"Marketing/Lead API", start:"2026-05-18", end:"2026-05-20", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Backend", title:"Dashboard API (KPI/revenue)", start:"2026-05-21", end:"2026-05-24", status:"Todo", progress:0, notes:"", updated_at:"" },
+
+    // Frontend (25/05 → 15/06)
+    { module:"Frontend", title:"Setup NextJS repo + routing", start:"2026-05-25", end:"2026-05-27", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Frontend", title:"Layout CRM (sidebar/header/auth guard)", start:"2026-05-27", end:"2026-05-30", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Frontend", title:"Customer UI (list/detail/form) + connect API", start:"2026-05-31", end:"2026-06-04", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Frontend", title:"Booking UI (calendar + create) + connect API", start:"2026-06-05", end:"2026-06-07", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Frontend", title:"Invoice/Payment UI + connect API", start:"2026-06-08", end:"2026-06-10", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Frontend", title:"Marketing UI + connect API", start:"2026-06-11", end:"2026-06-13", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Frontend", title:"Dashboard UI + connect API", start:"2026-06-14", end:"2026-06-15", status:"Todo", progress:0, notes:"", updated_at:"" },
+
+    // Testing (16/06 → 25/06)
+    { module:"Testing", title:"Integration FE-BE (fix contract/API)", start:"2026-06-16", end:"2026-06-18", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Testing", title:"Test flow Customer end-to-end", start:"2026-06-19", end:"2026-06-21", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Testing", title:"Test flow Booking/Payment end-to-end", start:"2026-06-21", end:"2026-06-23", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Testing", title:"Fix bug + polish UI", start:"2026-06-23", end:"2026-06-25", status:"Todo", progress:0, notes:"", updated_at:"" },
+
+    // Deployment (26/06 → 30/06)
+    { module:"Deployment", title:"Setup server + env + secrets", start:"2026-06-26", end:"2026-06-27", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Deployment", title:"Deploy backend (Docker/VPS)", start:"2026-06-27", end:"2026-06-28", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Deployment", title:"Deploy frontend (Vercel/Netlify)", start:"2026-06-28", end:"2026-06-29", status:"Todo", progress:0, notes:"", updated_at:"" },
+    { module:"Deployment", title:"Training user + final check", start:"2026-06-29", end:"2026-06-30", status:"Todo", progress:0, notes:"", updated_at:"" },
+  ];
+
+  function uid() {
+    return "T" + Math.random().toString(16).slice(2, 8).toUpperCase() + "-" + Date.now().toString(36).toUpperCase();
+  }
+
+  function nowISO(){
+    const d = new Date();
+    const pad = (n)=>String(n).padStart(2,"0");
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+
+  function loadTasks(){
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw){
+      const seeded = defaultTasks.map(t => ({...t, id: uid(), updated_at: nowISO()}));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
+      return seeded;
+    }
+    try{
+      const arr = JSON.parse(raw);
+      if(!Array.isArray(arr)) throw new Error("invalid");
+      return arr;
+    }catch(e){
+      localStorage.removeItem(STORAGE_KEY);
+      const seeded = defaultTasks.map(t => ({...t, id: uid(), updated_at: nowISO()}));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
+      return seeded;
+    }
+  }
+
+  function saveTasks(tasks){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  }
+
+  let tasks = loadTasks();
+  let selectedIds = new Set();
+
+  // =========================
+  // DOM helpers
+  // =========================
+  const $ = (id)=>document.getElementById(id);
+
+  const els = {
+    tbody: $("tbody"),
+    q: $("q"),
+    filterModule: $("filterModule"),
+    filterStatus: $("filterStatus"),
+    sortBy: $("sortBy"),
+    countShown: $("countShown"),
+    chkAll: $("chkAll"),
+
+    // form
+    taskId: $("taskId"),
+    taskModule: $("taskModule"),
+    taskStart: $("taskStart"),
+    taskEnd: $("taskEnd"),
+    taskTitle: $("taskTitle"),
+    taskStatus: $("taskStatus"),
+    taskProgress: $("taskProgress"),
+    taskNotes: $("taskNotes"),
+
+    // buttons
+    btnAdd: $("btnAdd"),
+    btnSaveTask: $("btnSaveTask"),
+    btnClearForm: $("btnClearForm"),
+    btnExport: $("btnExport"),
+    fileImport: $("fileImport"),
+    btnReset: $("btnReset"),
+    btnMarkSelectedDone: $("btnMarkSelectedDone"),
+
+    // KPI
+    kpiTotal: $("kpiTotal"),
+    kpiDone: $("kpiDone"),
+    kpiProgress: $("kpiProgress"),
+    kpiRange: $("kpiRange"),
+    kpiDonePct: $("kpiDonePct"),
+    kpiUpdated: $("kpiUpdated"),
+    kpiOverdue: $("kpiOverdue"),
+    kpiOverdueHint: $("kpiOverdueHint"),
+    barOverall: $("barOverall"),
+
+    // charts
+    pie: $("pie"),
+    barMonth: $("barMonth"),
+  };
+
+  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+  function normalizeTask(t){
+    // Auto rules
+    let p = clamp(parseInt(t.progress ?? 0, 10) || 0, 0, 100);
+    let status = t.status || "Todo";
+    if(status === "Done") p = 100;
+    if(p === 100) status = "Done";
+    return {...t, progress:p, status};
+  }
+
+  function badgeClass(status){
+    if(status === "Done") return "good";
+    if(status === "Blocked") return "bad";
+    if(status === "In Progress") return "warn";
+    return "info";
+  }
+
+  function isOverdue(t, todayStr){
+    // overdue if end < today and not done
+    if(t.status === "Done") return false;
+    if(!t.end) return false;
+    return t.end < todayStr;
+  }
+
+  // =========================
+  // Filtering & Sorting
+  // =========================
+  function getView(){
+    const q = (els.q.value || "").trim().toLowerCase();
+    const mod = els.filterModule.value;
+    const st = els.filterStatus.value;
+    const sort = els.sortBy.value;
+
+    let list = tasks.map(normalizeTask);
+
+    if(q){
+      list = list.filter(t =>
+        (t.title||"").toLowerCase().includes(q) ||
+        (t.module||"").toLowerCase().includes(q) ||
+        (t.notes||"").toLowerCase().includes(q) ||
+        (t.id||"").toLowerCase().includes(q)
+      );
+    }
+    if(mod) list = list.filter(t => t.module === mod);
+    if(st) list = list.filter(t => t.status === st);
+
+    const byDate = (a,b, field, dir)=>{
+      const av = a[field] || "";
+      const bv = b[field] || "";
+      if(av === bv) return 0;
+      return (av > bv ? 1 : -1) * dir;
+    };
+
+    if(sort === "start_asc") list.sort((a,b)=>byDate(a,b,"start", 1));
+    if(sort === "start_desc") list.sort((a,b)=>byDate(a,b,"start",-1));
+    if(sort === "end_asc") list.sort((a,b)=>byDate(a,b,"end", 1));
+    if(sort === "end_desc") list.sort((a,b)=>byDate(a,b,"end",-1));
+    if(sort === "progress_desc") list.sort((a,b)=>(b.progress - a.progress));
+    if(sort === "progress_asc") list.sort((a,b)=>(a.progress - b.progress));
+    if(sort === "updated_desc") list.sort((a,b)=>((b.updated_at||"").localeCompare(a.updated_at||"")));
+
+    return list;
+  }
+
+  // =========================
+  // Render table
+  // =========================
+  function render(){
+    // persist normalized tasks
+    tasks = tasks.map(normalizeTask);
+    saveTasks(tasks);
+
+    const list = getView();
+    els.countShown.textContent = `${list.length} hiển thị`;
+
+    els.tbody.innerHTML = list.map(t=>{
+      const overdue = isOverdue(t, todayISODate());
+      const overdueTag = overdue ? `<div class="mini"><span class="pill bad">Overdue</span></div>` : "";
+      return `
+        <tr>
+          <td><input type="checkbox" class="chkRow" data-id="${t.id}" ${selectedIds.has(t.id) ? "checked":""}></td>
+          <td><span class="chip">${escapeHtml(t.module||"")}</span></td>
+          <td>
+            <div class="td-title">${escapeHtml(t.title||"")}</div>
+            <div class="mini">ID: ${escapeHtml(t.id)}${t.notes ? " • " + escapeHtml(t.notes) : ""}</div>
+            ${overdueTag}
+          </td>
+          <td>${escapeHtml(t.start||"")}</td>
+          <td>${escapeHtml(t.end||"")}</td>
+          <td><span class="pill ${badgeClass(t.status)}">${escapeHtml(t.status)}</span></td>
+          <td>
+            <div class="mini" style="margin-bottom:6px">${t.progress}%</div>
+            <div class="bar"><div style="width:${t.progress}%"></div></div>
+          </td>
+          <td class="mini">${escapeHtml(t.updated_at||"")}</td>
+          <td>
+            <div class="actions">
+              <button class="btn" data-act="edit" data-id="${t.id}">Sửa</button>
+              <button class="btn good" data-act="done" data-id="${t.id}">Done</button>
+              <button class="btn danger" data-act="del" data-id="${t.id}">Xóa</button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join("");
+
+    // checkbox events
+    document.querySelectorAll(".chkRow").forEach(chk=>{
+      chk.addEventListener("change", (e)=>{
+        const id = e.target.dataset.id;
+        if(e.target.checked) selectedIds.add(id);
+        else selectedIds.delete(id);
+      });
+    });
+
+    // action events
+    els.tbody.querySelectorAll("button[data-act]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const id = btn.dataset.id;
+        const act = btn.dataset.act;
+        if(act === "edit") fillForm(id);
+        if(act === "done") markDone(id);
+        if(act === "del") delTask(id);
+      });
+    });
+
+    updateKpisAndCharts();
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[m]));
+  }
+
+  function todayISODate(){
+    const d = new Date();
+    const pad=(n)=>String(n).padStart(2,"0");
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  }
+
+  // =========================
+  // Form actions
+  // =========================
+  function clearForm(){
+    els.taskId.value = "";
+    els.taskModule.value = "Business";
+    els.taskStart.value = "";
+    els.taskEnd.value = "";
+    els.taskTitle.value = "";
+    els.taskStatus.value = "Todo";
+    els.taskProgress.value = 0;
+    els.taskNotes.value = "";
+  }
+
+  function fillForm(id){
+    const t = tasks.find(x=>x.id===id);
+    if(!t) return;
+    els.taskId.value = t.id;
+    els.taskModule.value = t.module || "Business";
+    els.taskStart.value = t.start || "";
+    els.taskEnd.value = t.end || "";
+    els.taskTitle.value = t.title || "";
+    els.taskStatus.value = t.status || "Todo";
+    els.taskProgress.value = t.progress ?? 0;
+    els.taskNotes.value = t.notes || "";
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+
+  function upsertFromForm(){
+    const id = els.taskId.value || uid();
+    const obj = normalizeTask({
+      id,
+      module: els.taskModule.value,
+      start: els.taskStart.value,
+      end: els.taskEnd.value,
+      title: (els.taskTitle.value || "").trim(),
+      status: els.taskStatus.value,
+      progress: parseInt(els.taskProgress.value || "0", 10),
+      notes: (els.taskNotes.value || "").trim(),
+      updated_at: nowISO(),
+    });
+
+    if(!obj.title){
+      alert("Vui lòng nhập tiêu đề task.");
+      return;
+    }
+    // basic date sanity
+    if(obj.start && obj.end && obj.end < obj.start){
+      alert("End date phải >= Start date.");
+      return;
+    }
+
+    const idx = tasks.findIndex(x=>x.id===id);
+    if(idx >= 0) tasks[idx] = obj;
+    else tasks.unshift(obj); // add to top
+
+    saveTasks(tasks);
+    render();
+    fillForm(obj.id);
+  }
+
+  function markDone(id){
+    const idx = tasks.findIndex(x=>x.id===id);
+    if(idx<0) return;
+    tasks[idx] = normalizeTask({...tasks[idx], status:"Done", progress:100, updated_at: nowISO()});
+    saveTasks(tasks);
+    render();
+  }
+
+  function delTask(id){
+    if(!confirm("Xóa task này?")) return;
+    tasks = tasks.filter(x=>x.id!==id);
+    selectedIds.delete(id);
+    saveTasks(tasks);
+    render();
+  }
+
+  // =========================
+  // KPI + Charts
+  // =========================
+  function updateKpisAndCharts(){
+    const all = tasks.map(normalizeTask);
+    const total = all.length;
+    const done = all.filter(t=>t.status==="Done").length;
+
+    const avgProgress = total ? Math.round(all.reduce((s,t)=>s+(t.progress||0),0)/total) : 0;
+
+    const today = todayISODate();
+    const overdue = all.filter(t=>isOverdue(t, today)).length;
+
+    // range by min start / max end
+    const starts = all.map(t=>t.start).filter(Boolean).sort();
+    const ends = all.map(t=>t.end).filter(Boolean).sort();
+    const range = (starts[0] && ends[ends.length-1]) ? `${starts[0]} → ${ends[ends.length-1]}` : "—";
+
+    els.kpiTotal.textContent = total;
+    els.kpiDone.textContent = done;
+    els.kpiProgress.textContent = `${avgProgress}%`;
+    els.kpiRange.textContent = range;
+    els.kpiDonePct.textContent = total ? `${Math.round(done*100/total)}% task Done` : "—";
+    els.kpiUpdated.textContent = `Cập nhật: ${nowISO()}`;
+    els.kpiOverdue.textContent = overdue;
+    els.kpiOverdueHint.textContent = `Hôm nay: ${today}`;
+
+    els.barOverall.style.width = `${avgProgress}%`;
+
+    drawPie(done, total - done);
+    drawMonthlyBars(all);
+  }
+
+  function drawPie(done, notDone){
+    const c = els.pie;
+    const ctx = c.getContext("2d");
+    // handle high-DPI
+    const w = c.clientWidth, h = c.clientHeight;
+    c.width = Math.floor(w * devicePixelRatio);
+    c.height = Math.floor(h * devicePixelRatio);
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+
+    ctx.clearRect(0,0,w,h);
+
+    const total = done + notDone;
+    const cx = w/2, cy = h/2, r = Math.min(w,h)*0.33;
+
+    // background circle
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI*2);
+    ctx.fillStyle = "rgba(255,255,255,.06)";
+    ctx.fill();
+
+    if(total === 0){
+      ctx.fillStyle = "rgba(255,255,255,.7)";
+      ctx.font = "700 14px system-ui";
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText("No data", cx, cy);
+      return;
+    }
+
+    const doneAngle = (done/total) * Math.PI*2;
+
+    // done slice
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.arc(cx, cy, r, -Math.PI/2, -Math.PI/2 + doneAngle);
+    ctx.closePath();
+    ctx.fillStyle = "rgba(34,197,94,.65)";
+    ctx.fill();
+
+    // not done slice
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.arc(cx, cy, r, -Math.PI/2 + doneAngle, -Math.PI/2 + Math.PI*2);
+    ctx.closePath();
+    ctx.fillStyle = "rgba(59,130,246,.45)";
+    ctx.fill();
+
+    // inner cut (donut)
+    ctx.beginPath();
+    ctx.arc(cx, cy, r*0.62, 0, Math.PI*2);
+    ctx.fillStyle = "rgba(11,18,32,.9)";
+    ctx.fill();
+
+    // text
+    ctx.fillStyle = "rgba(234,240,255,.95)";
+    ctx.font = "800 18px system-ui";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    const pct = Math.round(done*100/total);
+    ctx.fillText(`${pct}%`, cx, cy-6);
+
+    ctx.fillStyle = "rgba(147,164,199,.9)";
+    ctx.font = "600 12px system-ui";
+    ctx.fillText(`${done}/${total} Done`, cx, cy+14);
+  }
+
+  function drawMonthlyBars(all){
+    const c = els.barMonth;
+    const ctx = c.getContext("2d");
+    const w = c.clientWidth, h = c.clientHeight;
+    c.width = Math.floor(w * devicePixelRatio);
+    c.height = Math.floor(h * devicePixelRatio);
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+
+    ctx.clearRect(0,0,w,h);
+
+    // count done by month of end date
+    const buckets = {}; // YYYY-MM -> count done
+    const scopeMonths = ["2026-03","2026-04","2026-05","2026-06"];
+    scopeMonths.forEach(m => buckets[m] = 0);
+
+    all.forEach(t=>{
+      if(t.status !== "Done") return;
+      const d = t.end || t.start;
+      if(!d) return;
+      const m = d.slice(0,7);
+      if(buckets[m] === undefined) buckets[m] = 0;
+      buckets[m] += 1;
+    });
+
+    const values = scopeMonths.map(m => buckets[m] || 0);
+    const maxV = Math.max(1, ...values);
+
+    const pad = 14;
+    const chartW = w - pad*2;
+    const chartH = h - pad*2 - 18;
+
+    // axis baseline
+    ctx.strokeStyle = "rgba(255,255,255,.10)";
+    ctx.beginPath();
+    ctx.moveTo(pad, pad + chartH);
+    ctx.lineTo(pad + chartW, pad + chartH);
+    ctx.stroke();
+
+    const barW = chartW / scopeMonths.length * 0.55;
+    const gap = chartW / scopeMonths.length * 0.45;
+
+    scopeMonths.forEach((m, i)=>{
+      const x = pad + i*(barW+gap) + gap/2;
+      const val = values[i];
+      const bh = (val / maxV) * (chartH - 10);
+      const y = pad + chartH - bh;
+
+      // bar
+      ctx.fillStyle = "rgba(240,96,32,.55)";
+      ctx.fillRect(x, y, barW, bh);
+
+      // label
+      ctx.fillStyle = "rgba(147,164,199,.9)";
+      ctx.font = "600 11px system-ui";
+      ctx.textAlign = "center";
+      ctx.fillText(m.replace("2026-","T"), x + barW/2, pad + chartH + 14);
+
+      // value
+      ctx.fillStyle = "rgba(234,240,255,.95)";
+      ctx.font = "800 12px system-ui";
+      ctx.fillText(String(val), x + barW/2, y - 8);
+    });
+  }
+
+  // =========================
+  // CSV Export / Import
+  // =========================
+  function csvEscape(val){
+    const s = String(val ?? "");
+    if(/[",\n]/.test(s)) return `"${s.replace(/"/g,'""')}"`;
+    return s;
+  }
+
+  function toCSV(rows){
+    const headers = ["id","module","title","start","end","status","progress","notes","updated_at"];
+    const lines = [];
+    lines.push(headers.join(","));
+    rows.forEach(r=>{
+      const line = headers.map(h => csvEscape(r[h])).join(",");
+      lines.push(line);
+    });
+    return lines.join("\n");
+  }
+
+  function download(filename, text){
+    const blob = new Blob([text], {type:"text/csv;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function parseCSV(text){
+    // Simple CSV parser (handles quotes)
+    const rows = [];
+    let i=0, cur="", inQ=false;
+    const out = [];
+    for(; i<text.length; i++){
+      const ch = text[i];
+      if(inQ){
+        if(ch === '"'){
+          if(text[i+1] === '"'){ cur += '"'; i++; }
+          else inQ=false;
+        } else cur += ch;
+      } else {
+        if(ch === '"') inQ=true;
+        else if(ch === ","){ out.push(cur); cur=""; }
+        else if(ch === "\n"){
+          out.push(cur); cur="";
+          rows.push(out.slice());
+          out.length=0;
+        } else if(ch === "\r"){
+          // ignore
+        } else cur += ch;
+      }
+    }
+    if(cur.length || out.length){
+      out.push(cur);
+      rows.push(out.slice());
+    }
+    return rows;
+  }
+
+  function importCSVFile(file){
+    const reader = new FileReader();
+    reader.onload = ()=>{
+      try{
+        const text = String(reader.result || "");
+        const rows = parseCSV(text);
+        if(rows.length < 2) throw new Error("CSV rỗng");
+        const headers = rows[0].map(h => h.trim());
+        const idx = (name)=>headers.indexOf(name);
+
+        const required = ["id","module","title","start","end","status","progress","notes","updated_at"];
+        for(const r of required){
+          if(idx(r) < 0) throw new Error("CSV thiếu cột: " + r);
+        }
+
+        const newTasks = rows.slice(1).filter(r=>r.length && r.some(x=>String(x).trim()!=="")).map(r=>{
+          const t = {
+            id: r[idx("id")] || uid(),
+            module: r[idx("module")] || "Business",
+            title: r[idx("title")] || "",
+            start: r[idx("start")] || "",
+            end: r[idx("end")] || "",
+            status: r[idx("status")] || "Todo",
+            progress: parseInt(r[idx("progress")] || "0", 10) || 0,
+            notes: r[idx("notes")] || "",
+            updated_at: r[idx("updated_at")] || nowISO(),
+          };
+          return normalizeTask(t);
+        });
+
+        if(!confirm(`Import sẽ ghi đè dữ liệu hiện tại. Import ${newTasks.length} task?`)) return;
+
+        tasks = newTasks;
+        selectedIds = new Set();
+        saveTasks(tasks);
+        clearForm();
+        render();
+      }catch(e){
+        alert("Import CSV lỗi: " + (e.message || e));
+      }
+    };
+    reader.readAsText(file, "utf-8");
+  }
+
+  // =========================
+  // Events
+  // =========================
+  els.btnAdd.addEventListener("click", ()=>{
+    clearForm();
+    els.taskId.value = "";
+    els.taskStart.value = "2026-03-04";
+    els.taskEnd.value = "2026-03-04";
+    els.taskModule.value = "Business";
+    els.taskStatus.value = "Todo";
+    els.taskProgress.value = 0;
+    els.taskTitle.focus();
+  });
+
+  els.btnSaveTask.addEventListener("click", upsertFromForm);
+  els.btnClearForm.addEventListener("click", clearForm);
+
+  els.q.addEventListener("input", render);
+  els.filterModule.addEventListener("change", render);
+  els.filterStatus.addEventListener("change", render);
+  els.sortBy.addEventListener("change", render);
+
+  els.taskStatus.addEventListener("change", ()=>{
+    if(els.taskStatus.value === "Done") els.taskProgress.value = 100;
+  });
+  els.taskProgress.addEventListener("input", ()=>{
+    const p = clamp(parseInt(els.taskProgress.value || "0",10)||0,0,100);
+    els.taskProgress.value = p;
+    if(p === 100) els.taskStatus.value = "Done";
+  });
+
+  els.btnExport.addEventListener("click", ()=>{
+    const csv = toCSV(tasks.map(normalizeTask));
+    const name = `crm_timeline_${todayISODate()}_export.csv`;
+    download(name, csv);
+  });
+
+  els.fileImport.addEventListener("change", (e)=>{
+    const f = e.target.files && e.target.files[0];
+    if(f) importCSVFile(f);
+    e.target.value = "";
+  });
+
+  els.btnReset.addEventListener("click", ()=>{
+    if(!confirm("Reset sẽ xóa dữ liệu hiện tại và nạp lại timeline mặc định. Tiếp tục?")) return;
+    localStorage.removeItem(STORAGE_KEY);
+    tasks = loadTasks();
+    selectedIds = new Set();
+    clearForm();
+    render();
+  });
+
+  els.chkAll.addEventListener("change", (e)=>{
+    const list = getView();
+    if(e.target.checked){
+      list.forEach(t=>selectedIds.add(t.id));
+    }else{
+      list.forEach(t=>selectedIds.delete(t.id));
+    }
+    render();
+  });
+
+  els.btnMarkSelectedDone.addEventListener("click", ()=>{
+    if(selectedIds.size === 0){
+      alert("Bạn chưa chọn task nào.");
+      return;
+    }
+    if(!confirm(`Đánh dấu Done cho ${selectedIds.size} task?`)) return;
+    tasks = tasks.map(t => selectedIds.has(t.id)
+      ? normalizeTask({...t, status:"Done", progress:100, updated_at: nowISO()})
+      : t
+    );
+    saveTasks(tasks);
+    render();
+  });
+
+  // initial
+  clearForm();
+  render();
+</script>
+</body>
+</html>

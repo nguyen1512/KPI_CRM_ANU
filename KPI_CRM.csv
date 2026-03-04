@@ -1,0 +1,47 @@
+id,module,title,start,end,status,progress,notes,updated_at
+T0A796F-MMBGPED0,Business,Xác định mục tiêu hệ thống CRM,2026-03-04,2026-03-06,Todo,0,,2026-03-04 10:13:28
+TDDD9BE-MMBGPED0,Business,Xác định role hệ thống (CEO/PGĐ/TP/CSKH/MKT/...) ,2026-03-04,2026-03-07,Todo,0,,2026-03-04 10:13:28
+TCDD91E-MMBGPED0,Business,Xác định module CRM (Customer/Booking/Sales/MKT/Report...),2026-03-06,2026-03-08,Todo,0,,2026-03-04 10:13:28
+T1F0354-MMBGPED0,Business,Xây dựng user flow tổng (Lead→Customer→Booking→Payment),2026-03-08,2026-03-11,Todo,0,,2026-03-04 10:13:28
+T5D4E97-MMBGPED0,Business,Viết chi tiết chức năng từng module (spec),2026-03-10,2026-03-14,Todo,0,,2026-03-04 10:13:28
+TCB0AA3-MMBGPED0,Business,Hoàn thiện BRD,2026-03-14,2026-03-15,Todo,0,,2026-03-04 10:13:28
+T433D7E-MMBGPED0,UX/UI,Setup Figma workspace + structure file,2026-03-16,2026-03-17,Todo,0,,2026-03-04 10:13:28
+T067490-MMBGPED0,UX/UI,Thiết kế Design System (font/color/spacing/components),2026-03-17,2026-03-19,Todo,0,,2026-03-04 10:13:28
+T9F69D2-MMBGPED0,UX/UI,Thiết kế layout CRM (sidebar/header/page layout),2026-03-19,2026-03-21,Todo,0,,2026-03-04 10:13:28
+TDEF709-MMBGPED0,UX/UI,Thiết kế Dashboard UI (KPI/cards/charts),2026-03-22,2026-03-24,Todo,0,,2026-03-04 10:13:28
+TC8ED3A-MMBGPED0,UX/UI,Thiết kế Customer module UI (list/detail/form),2026-03-24,2026-03-27,Todo,0,,2026-03-04 10:13:28
+TD763A2-MMBGPED0,UX/UI,Thiết kế Booking module UI (calendar + create booking),2026-03-27,2026-03-29,Todo,0,,2026-03-04 10:13:28
+TDB1370-MMBGPED0,UX/UI,Thiết kế Invoice/Payment module UI,2026-03-30,2026-04-01,Todo,0,,2026-03-04 10:13:28
+T364D8F-MMBGPED0,UX/UI,Thiết kế Marketing module UI (lead/campaign),2026-04-01,2026-04-03,Todo,0,,2026-03-04 10:13:28
+TA3F850-MMBGPED0,UX/UI,Review + finalize UI,2026-04-04,2026-04-05,Todo,0,,2026-03-04 10:13:28
+TE4A7CB-MMBGPED0,Database,Setup PostgreSQL + config environment,2026-04-06,2026-04-07,Todo,0,,2026-03-04 10:13:28
+TA820D0-MMBGPED0,Database,Thiết kế bảng core (users/roles/permissions/customers),2026-04-07,2026-04-10,Todo,0,,2026-03-04 10:13:28
+T328ED5-MMBGPED0,Database,Thiết kế bảng transaction (booking/payment/invoice),2026-04-10,2026-04-12,Todo,0,,2026-03-04 10:13:28
+T015AA6-MMBGPED0,Database,Xây ERD + review logic quan hệ,2026-04-13,2026-04-15,Todo,0,,2026-03-04 10:13:28
+T252AA1-MMBGPED0,Database,"Viết schema SQL (create table, indexes, constraints)",2026-04-15,2026-04-18,Todo,0,,2026-03-04 10:13:28
+T5AD0D8-MMBGPED0,Database,Seed data + test query,2026-04-18,2026-04-19,Todo,0,,2026-03-04 10:13:28
+T4EF1B5-MMBGPED0,Backend,Setup backend repo + config,2026-04-20,2026-04-22,Todo,0,,2026-03-04 10:13:28
+T1EE503-MMBGPED0,Backend,Auth API (login/JWT/refresh),2026-04-22,2026-04-24,Todo,0,,2026-03-04 10:13:28
+T1098B6-MMBGPED0,Backend,User API (CRUD + roles),2026-04-25,2026-04-28,Todo,0,,2026-03-04 10:13:28
+TF9C83D-MMBGPED0,Backend,Customer API (CRUD + search + history),2026-04-28,2026-05-03,Todo,0,,2026-03-04 10:13:28
+T653EAC-MMBGPED0,Backend,Booking API (CRUD + calendar endpoints),2026-05-04,2026-05-07,Todo,0,,2026-03-04 10:13:28
+T847E65-MMBGPED0,Backend,Product/Service API,2026-05-08,2026-05-10,Todo,0,,2026-03-04 10:13:28
+T35E4D3-MMBGPED0,Backend,Payment API,2026-05-11,2026-05-14,Todo,0,,2026-03-04 10:13:28
+T34B059-MMBGPED0,Backend,Invoice API,2026-05-14,2026-05-17,Todo,0,,2026-03-04 10:13:28
+T29AA26-MMBGPED0,Backend,Marketing/Lead API,2026-05-18,2026-05-20,Todo,0,,2026-03-04 10:13:28
+TD9E9F3-MMBGPED0,Backend,Dashboard API (KPI/revenue),2026-05-21,2026-05-24,Todo,0,,2026-03-04 10:13:28
+TB3A580-MMBGPED0,Frontend,Setup NextJS repo + routing,2026-05-25,2026-05-27,Todo,0,,2026-03-04 10:13:28
+TFF5FFE-MMBGPED0,Frontend,Layout CRM (sidebar/header/auth guard),2026-05-27,2026-05-30,Todo,0,,2026-03-04 10:13:28
+T954657-MMBGPED0,Frontend,Customer UI (list/detail/form) + connect API,2026-05-31,2026-06-04,Todo,0,,2026-03-04 10:13:28
+TE6738B-MMBGPED0,Frontend,Booking UI (calendar + create) + connect API,2026-06-05,2026-06-07,Todo,0,,2026-03-04 10:13:28
+TD780B8-MMBGPED0,Frontend,Invoice/Payment UI + connect API,2026-06-08,2026-06-10,Todo,0,,2026-03-04 10:13:28
+T51B6DA-MMBGPED0,Frontend,Marketing UI + connect API,2026-06-11,2026-06-13,Todo,0,,2026-03-04 10:13:28
+T109CB3-MMBGPED0,Frontend,Dashboard UI + connect API,2026-06-14,2026-06-15,Todo,0,,2026-03-04 10:13:28
+T4B4A70-MMBGPED0,Testing,Integration FE-BE (fix contract/API),2026-06-16,2026-06-18,Todo,0,,2026-03-04 10:13:28
+TC3FB30-MMBGPED0,Testing,Test flow Customer end-to-end,2026-06-19,2026-06-21,Todo,0,,2026-03-04 10:13:28
+T969EA5-MMBGPED0,Testing,Test flow Booking/Payment end-to-end,2026-06-21,2026-06-23,Todo,0,,2026-03-04 10:13:28
+T7578E2-MMBGPED0,Testing,Fix bug + polish UI,2026-06-23,2026-06-25,Todo,0,,2026-03-04 10:13:28
+TE6259B-MMBGPED0,Deployment,Setup server + env + secrets,2026-06-26,2026-06-27,Todo,0,,2026-03-04 10:13:28
+T4DA710-MMBGPED0,Deployment,Deploy backend (Docker/VPS),2026-06-27,2026-06-28,Todo,0,,2026-03-04 10:13:28
+TFD4CA7-MMBGPED0,Deployment,Deploy frontend (Vercel/Netlify),2026-06-28,2026-06-29,Todo,0,,2026-03-04 10:13:28
+T1ED891-MMBGPED0,Deployment,Training user + final check,2026-06-29,2026-06-30,Todo,0,,2026-03-04 10:13:28
